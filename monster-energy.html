@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monster Energy – Galéria všetkych monstier</title>
+<style>
+  :root{
+    --green:#6ede2a;
+    --bg:#0a0b0a;
+    --panel:#141614;
+    --line:#242724;
+    --text:#e9ece8;
+    --muted:#9aa197;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1000px 500px at 15% -10%, rgba(110,222,42,.13), transparent 60%),
+      radial-gradient(900px 500px at 90% 0%, rgba(0,150,255,.10), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  header{
+    padding:46px 20px 26px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(110,222,42,.07), transparent);
+  }
+  .logo{
+    width:270px;max-width:70vw;display:block;margin:0 auto 14px;
+    filter:drop-shadow(0 0 18px rgba(110,222,42,.45));
+  }
+  h1{
+    font-family:Impact,"Arial Black",sans-serif;
+    font-size:clamp(30px,6vw,58px);
+    letter-spacing:2px;
+    margin:0 0 8px;
+    text-transform:uppercase;
+  }
+  h1 span{color:var(--green)}
+  .sub{color:var(--muted);max-width:760px;margin:0 auto;font-size:15px;line-height:1.6}
+  .stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+  .stat{
+    background:var(--panel);border:1px solid var(--line);border-radius:999px;
+    padding:7px 15px;font-size:13px;color:var(--muted)
+  }
+  .stat b{color:var(--green);font-size:15px}
+
+  section{padding:34px 20px;max-width:1280px;margin:0 auto}
+  h2{
+    font-family:Impact,"Arial Black",sans-serif;font-size:26px;letter-spacing:1.5px;
+    text-transform:uppercase;margin:0 0 6px
+  }
+  h2::before{content:"// ";color:var(--green)}
+  .hint{color:var(--muted);font-size:14px;margin:0 0 20px}
+  .photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+  figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  figure img{width:100%;height:250px;object-fit:cover;display:block;background:#000;transition:transform .4s}
+  figure:hover img{transform:scale(1.05)}
+  figcaption{padding:11px 14px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+
+  .toolbar{
+    position:sticky;top:0;z-index:20;
+    background:rgba(10,11,10,.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:14px 20px;
+  }
+  .toolbar-in{max-width:1280px;margin:0 auto;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  #search{
+    flex:1;min-width:220px;background:#0e100e;border:1px solid var(--line);color:var(--text);
+    padding:11px 16px;border-radius:12px;font-size:15px;outline:none;transition:border .2s
+  }
+  #search:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(110,222,42,.15)}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{
+    background:#0e100e;border:1px solid var(--line);color:var(--muted);
+    padding:9px 14px;border-radius:999px;font-size:13px;cursor:pointer;transition:.18s;user-select:none
+  }
+  .chip:hover{color:var(--text);border-color:#3a403a}
+  .chip.active{background:var(--green);border-color:var(--green);color:#08120a;font-weight:700}
+  .count{font-size:13px;color:var(--muted);width:100%}
+  .count b{color:var(--green)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(198px,1fr));gap:18px}
+  .card{
+    background:linear-gradient(180deg,#161816,#101210);
+    border:1px solid var(--line);border-radius:18px;
+    padding:18px 14px 16px;text-align:center;cursor:pointer;
+    transition:transform .22s, border-color .22s, box-shadow .22s;
+    position:relative;overflow:hidden
+  }
+  .card::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(220px 130px at 50% 0%, rgba(110,222,42,.10), transparent 70%);
+    opacity:0;transition:opacity .25s
+  }
+  .card:hover{transform:translateY(-7px);border-color:rgba(110,222,42,.55);box-shadow:0 14px 30px rgba(0,0,0,.55)}
+  .card:hover::after{opacity:1}
+  .can{width:100%;max-width:132px;height:auto;filter:drop-shadow(0 12px 14px rgba(0,0,0,.6))}
+  .card h3{font-size:15.5px;margin:14px 0 6px;line-height:1.25}
+  .badge{
+    display:inline-block;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase;
+    padding:4px 9px;border-radius:999px;border:1px solid;font-weight:700
+  }
+  .card p{font-size:12.5px;color:var(--muted);margin:10px 0 0;line-height:1.5}
+  .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0;font-size:15px}
+
+  .modal{
+    position:fixed;inset:0;background:rgba(4,5,4,.86);backdrop-filter:blur(6px);
+    display:none;align-items:center;justify-content:center;padding:20px;z-index:50
+  }
+  .modal.open{display:flex}
+  .modal-box{
+    background:#121412;border:1px solid rgba(110,222,42,.35);border-radius:22px;
+    max-width:720px;width:100%;padding:30px;display:flex;gap:26px;flex-wrap:wrap;
+    justify-content:center;position:relative;box-shadow:0 30px 70px rgba(0,0,0,.7)
+  }
+  .modal-box .can{max-width:190px}
+  .modal-info{flex:1;min-width:240px;align-self:center}
+  .modal-info h3{font-family:Impact,"Arial Black",sans-serif;font-size:30px;letter-spacing:1px;margin:10px 0 8px;text-transform:uppercase}
+  .modal-info p{color:var(--muted);line-height:1.65;font-size:15px}
+  .modal-info .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;font-size:12.5px;color:#7f867c}
+  .modal-info .meta span{border:1px dashed #333; padding:5px 10px;border-radius:8px}
+  .close{
+    position:absolute;top:12px;right:16px;background:none;border:none;color:var(--muted);
+    font-size:30px;cursor:pointer;line-height:1;transition:.2s
+  }
+  .close:hover{color:var(--green);transform:rotate(90deg)}
+
+  footer{
+    border-top:1px solid var(--line);padding:26px 20px 40px;text-align:center;
+    color:#767c73;font-size:13px;line-height:1.7
+  }
+  footer a{color:var(--green);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  @media(max-width:560px){
+    .modal-box{padding:24px 18px}
+    .modal-info h3{font-size:24px}
+    section{padding:26px 14px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img class="logo" id="brandLogo" alt="Monster Energy"
+       src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Logo_Monster_Energy.webp">
+  <h1>Všetky <span>monštrá</span> na jednom mieste</h1>
+  <p class="sub">Kompletná galéria energetických nápojov Monster Energy – originálne príchute, edícia Ultra,
+     Juice, Reserve, Java aj alkoholická línia Beast. Klikni na plechovku pre detail.</p>
+  <div class="stats">
+    <div class="stat"><b id="statAll">0</b> príchutí</div>
+    <div class="stat"><b id="statLines">0</b> línií</div>
+    <div class="stat"><b>4</b> reálne fotky</div>
+  </div>
+</header>
+
+<section id="photos">
+  <h2>Reálne fotky</h2>
+  <p class="hint">Skutočné fotografie plechoviek a regálov z Wikimedia Commons (načítajú sa z internetu).</p>
+  <div class="photos" id="photoGrid"></div>
+</section>
+
+<div class="toolbar">
+  <div class="toolbar-in">
+    <input id="search" type="search" placeholder="🔎 Hľadaj príchuť… (napr. Ultra, Mango, Zero)">
+    <div class="chips" id="chips"></div>
+    <div class="count">Zobrazené: <b id="shown">0</b> / <span id="total">0</span> monstier</div>
+  </div>
+</div>
+
+<section>
+  <h2>Galéria plechoviek</h2>
+  <p class="hint">Ilustrácie plechoviek sú kreslené v SVG – farby sú inšpirované skutočnými obalmi.</p>
+  <div class="grid" id="grid"></div>
+</section>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <button class="close" id="closeBtn" aria-label="Zavrieť">&times;</button>
+    <div id="modalCan"></div>
+    <div class="modal-info">
+      <span class="badge" id="modalBadge"></span>
+      <h3 id="modalName"></h3>
+      <p id="modalDesc"></p>
+      <div class="meta">
+        <span>Objem: 500 ml (väčšina)</span>
+        <span>Kofeín: ≈ 150 mg / plechovka</span>
+        <span>Značka: Monster Energy</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Neoficiálna fanúšikovská stránka. Monster Energy je ochranná známka spoločnosti Monster Beverage Corporation.<br>
+  Fotky: <a href="https://commons.wikimedia.org/wiki/Category:Monster_Energy" target="_blank" rel="noopener">Wikimedia Commons</a>.
+  Energia nech s tebou! ⚡
+</footer>
+
+<script>
+/* ---------------- dáta: [názov, línia, telo1, telo2, logo, popis] ---------------- */
+const D = [
+  /* Monster Energy (jadro a špeciály) */
+  ["Original","Monster Energy","#131313","#242424","#6ede2a","Originálna zelená príchuť – čierna plechovka so zeleným škrabancovým logom."],
+  ["Zero Sugar","Monster Energy","#131313","#242424","#6ede2a","Klasická chuť bez cukru, plechovka s vrchom v zelenej farbe."],
+  ["Lo-Carb","Monster Energy","#101010","#1f1f1f","#1e4fd8","Znížený obsah sacharidov, tmavomodré logo na čiernom podklade."],
+  ["Assault","Monster Energy","#4b5d3a","#39482c","#e02b2b","Kolová príchuť v maskáčovom dizajne s červeným logom."],
+  ["Ripper","Monster Energy","#f0d000","#c9ab00","#111111","Tropické ovocie v žltej plechovke."],
+  ["Cuba-Libre","Monster Energy","#2a160b","#3d2312","#6ede2a","Kola a limetka – nealkoholická verzia kokteilu cuba libre."],
+  ["Dub Mad Dog","Monster Energy","#6b21a8","#4c1580","#e9d5ff","Hroznová príchuť – vyradená z predaja, zberateľská klasika."],
+  ["Maxx","Monster Energy","#151515","#262626","#a3ff12","Originálna chuť s pridaným dusíkom (N2O) pre hladší nápoj."],
+  ["Nitro Super Dry","Monster Energy","#0f0f0f","#1d1d1d","#b6ff00","Citrusová, s dusíkom namiesto CO₂ – ľahký a suchý podtón."],
+  ["Mule","Monster Energy","#17130f","#241d16","#c98a3a","Zázvorové pivo bez cukru, matná plechovka v bronzovej farbe."],
+  ["VR46 The Doctor","Monster Energy","#ffe000","#d4bb00","#111111","Pomarančová limitka s brandingom Valentina Rossiho (VR46)."],
+  ["LH44","Monster Energy","#d40000","#9c0000","#ffd400","Červená plechovka Lewisa Hamiltona so žltými vzormi."],
+  ["Full Throttle","Monster Energy","#0b53d0","#0840a8","#ffd400","Modrá plechovka s bielym textom a žltým logom."],
+  ["Lando Norris Zero Sugar","Monster Energy","#101010","#1e1e1e","#e5ff00","Melón-yuzu bez cukru, čierna plechovka s neónovo žltým vzorom."],
+
+  /* Ultra (zero sugar) */
+  ["Zero Ultra","Monster Ultra","#f4f4ef","#dcdcd6","#9ca3af","„Biely Monster“ – citrusová príchuť bez cukru, textúrovaná plechovka."],
+  ["Ultra Blue","Monster Ultra","#4fc3f7","#2fa5dd","#9ca3af","Modré maliny s ľahkým citrusovým a bobuľovým podtónom."],
+  ["Ultra Fantasy Ruby Red","Monster Ultra","#e01a6b","#b8145a","#9ca3af","Grepová príchuť bez cukru, magentová plechovka."],
+  ["Ultra Fiesta","Monster Ultra","#1e88e5","#1565c0","#9ca3af","Mangová, bez cukru, modrá plechovka."],
+  ["Ultra Watermelon","Monster Ultra","#ef1b1b","#c61414","#9ca3af","Vodný melón bez cukru, svieža červená plechovka."],
+  ["Ultra Paradise","Monster Ultra","#8bc34a","#689f38","#9ca3af","Jablko a kiwi bez cukru, limetkovo zelená plechovka."],
+  ["Ultra Rosá","Monster Ultra","#ff2d87","#d81f6c","#9ca3af","Pink lemonade bez cukru."],
+  ["Ultra Gold","Monster Ultra","#d4a017","#ad8010","#9ca3af","Ananás bez cukru v zlatej plechovke."],
+  ["Ultra Vice Guava","Monster Ultra","#12a5a5","#0d8282","#ffe4e9","Guava bez cukru, teal plechovka s ružovo-bielym logom."],
+  ["Ultra Red","Monster Ultra","#c62828","#9e1f1f","#9ca3af","Zmes bobúľ bez cukru, červená plechovka."],
+  ["Ultra Black","Monster Ultra","#141414","#242424","#9ca3af","Čerešňa bez cukru – takmer čierna plechovka."],
+  ["Ultra Peachy Keen","Monster Ultra","#ffcfa8","#f0b48c","#9ca3af","Broskyňa bez cukru, limitovaná edícia."],
+  ["Ultra Sunrise","Monster Ultra","#ff7a00","#e06600","#9ca3af","Pomaranč bez cukru, oranžová plechovka."],
+  ["Ultra Strawberry Dreams","Monster Ultra","#f06292","#d84a78","#9ca3af","Jahoda bez cukru, ružová plechovka."],
+  ["Ultra Passion","Monster Ultra","#ff5a1f","#e0470f","#9ca3af","Marakuja bez cukru."],
+  ["Ultra Red, White and Blue","Monster Ultra","#e53935","#1e88e5","#9ca3af","Príchuť „rocket pop“ – červeno-bielo-modrá plechovka."],
+  ["Ultra Violet","Monster Ultra","#7e57c2","#6042a8","#9ca3af","„Fialový Monster“ – hrozno bez cukru."],
+
+  /* Juice */
+  ["Pacific Punch","Monster Juice","#d21f24","#a8161b","#ffffff","Čerešňový punč z línie Juice Monster."],
+  ["Pipeline Punch","Monster Juice","#ff5fa2","#e0458a","#ffffff","Marakuja, pomaranč a guava – ružová plechovka."],
+  ["Mixxd","Monster Juice","#6d28d9","#5420b3","#ffffff","Čerešňový punč s textúrovaným fialovým obalom."],
+  ["Monarch","Monster Juice","#f7b7c8","#e39cb0","#f2c200","Pastelovo ružová plechovka s motýľom monarcha."],
+  ["Mango Loco","Monster Juice","#1450b8","#0f3d91","#ff8a00","Mango s dizajnom inšpirovaným Dňom mŕtvych."],
+  ["Khaotic","Monster Juice","#ffd400","#d9b400","#38bdf8","Kyslé citrusy – žltá plechovka s graffiti artworkom."],
+  ["Aussie Lemonade","Monster Juice","#1758c8","#11449e","#ffe600","Citrusová limonáda s morskými živočíchmi na obale (od 2022)."],
+  ["Bad Apple","Monster Juice","#c1121f","#980d17","#ffffff","Červené jablko v punkovom dizajne."],
+  ["Rio Punch","Monster Juice","#128a3c","#0d6b2e","#ffe600","Sladká papája, vanilková zmrzlina a čierna ríbezľa."],
+  ["Viking Berry","Monster Juice","#d92b2b","#7fd1f0","#ffffff","Severské bobule – plechovka v červeno-modrom prevedení."],
+  ["Voodoo Grape","Monster Juice","#ffd400","#6b21a8","#ffffff","Concord hrozno s louisianským voodoo artworkom."],
+
+  /* Reserve */
+  ["Reserve White Pineapple","Monster Reserve","#131313","#242424","#ffd400","Rezervná edícia: biely ananás, čierna plechovka so žltým logom."],
+  ["Reserve Orange Dreamsicle","Monster Reserve","#131313","#242424","#ff8a00","Rezervná edícia: pomarančový sen."],
+  ["Reserve Watermelon","Monster Reserve","#131313","#242424","#ff2d2d","Rezervná edícia: vodný melón."],
+
+  /* Java (káva) */
+  ["Java Salted Caramel","Monster Java","#3a2419","#29170f","#e0a54a","Káva s Monsterom – slaný karamel."],
+  ["Java Loco Mocha","Monster Java","#2d1b12","#1d100a","#c98a3a","Káva s Monsterom – moka a čokoláda."],
+  ["Java Irish Cream","Monster Java","#4a3222","#332114","#d8b47a","Káva s Monsterom – írska smotana."],
+  ["Java Mean Bean","Monster Java","#241610","#170d08","#a3ff12","Káva s Monsterom – plná chuť praženej kávy."],
+
+  /* Beast (alkohol) */
+  ["Beast Unleashed: Mean Green","Beast (alkohol)","#131313","#242424","#6ede2a","Alkoholický nápoj 6 % ABV inšpirovaný originálom – bez cukru a kofeínu."],
+  ["Beast Unleashed: White Haze","Beast (alkohol)","#f2f2ef","#dcdcd6","#9ca3af","Hladký citrusový profil s čistým záverom, 6 % ABV."],
+  ["Beast Unleashed: Peach Perfect","Beast (alkohol)","#ffb26b","#e8945a","#3b2416","Svieža broskyňová zmes, 6 % ABV."],
+  ["Beast Unleashed: Scary Berries","Beast (alkohol)","#7b1fa2","#5e1782","#ffffff","Citrusovo-ovocná zmes s menej sladkou chuťou, 6 % ABV."],
+  ["Beast Unleashed: Killer Sunrise","Beast (alkohol)","#ff6d00","#e05e00","#ffffff","Výrazný citrusový punč, 6 % ABV."],
+  ["Beast Unleashed: Gnarly Grape","Beast (alkohol)","#6a1b9a","#51147a","#ffffff","Šťavnaté hrozno s výrazným záverom, 6 % ABV."],
+  ["Beast Unleashed: Pink Poison","Beast (alkohol)","#ff4081","#e03370","#ffffff","Sladký a kyslý profil s výraznou farbou, 6 % ABV."],
+  ["Nasty Beast Original","Beast (alkohol)","#3e2723","#2b1a16","#ffd54f","Klasický studený čaj s alkoholom, 6 % ABV."],
+  ["Nasty Beast Tea + Lemonade","Beast (alkohol)","#c9a227","#a4801d","#ffffff","Sladký čaj zmiešaný s citrusmi, 6 % ABV."],
+  ["Nasty Beast Peach","Beast (alkohol)","#ffab91","#ef8f72","#5d3a2a","Výrazná broskyňová verzia čaju, 6 % ABV."],
+  ["Nasty Beast Green Tea","Beast (alkohol)","#66bb6a","#4c9a4f","#ffffff","Jemný a zemitý zelený čaj, 6 % ABV."],
+];
+
+const PHOTOS = [
+  ["https://upload.wikimedia.org/wikipedia/commons/0/06/Monster_Energy_drink_%28cropped%29.jpg",
+   "Original Green – 553 ml plechovka (Nemecko)"],
+  ["https://upload.wikimedia.org/wikipedia/commons/b/bd/Juice_monster_%28Pacific_Punch_flavor%29.png",
+   "Juice Monster – Pacific Punch, predná aj zadná strana"],
+  ["https://upload.wikimedia.org/wikipedia/commons/b/b9/Shelf_with_many_varieties_of_energy_drink_%27Monster%27_%28and_some_other_brands_at_top%29.jpg",
+   "Regál s mnohými príchuťami Monster v nemeckom obchode"],
+  ["https://upload.wikimedia.org/wikipedia/commons/c/cb/Monster_Beast_Alcoholic_Beverages.jpg",
+   "Štyri plechovky alkoholickej línie Monster Beast"],
+];
+
+const LINE_COLORS = {
+  "Monster Energy":"#6ede2a",
+  "Monster Ultra":"#9ca3af",
+  "Monster Juice":"#ff5fa2",
+  "Monster Reserve":"#ffd400",
+  "Monster Java":"#c98a3a",
+  "Beast (alkohol)":"#00d3ff",
+};
+
+/* ---------------- pomocné funkcie ---------------- */
+let uid = 0;
+function shade(hex, amt){
+  const n = parseInt(hex.slice(1), 16);
+  let r = (n >> 16) + amt, g = ((n >> 8) & 255) + amt, b = (n & 255) + amt;
+  r = Math.max(0, Math.min(255, r)); g = Math.max(0, Math.min(255, g)); b = Math.max(0, Math.min(255, b));
+  return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function norm(s){ return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
+
+/* SVG plechovka */
+function canSVG(f){
+  const id = "c" + (++uid);
+  const b1 = f.b1, b2 = f.b2, logo = f.logo;
+  const dark = parseInt(b1.slice(1),16) < 0x777777;
+  const rimA = dark ? "#e8e8e8" : "#cfcfcf";
+  return `
+<svg class="can" viewBox="0 0 120 264" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(f.name)}">
+  <defs>
+    <linearGradient id="g${id}" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"    stop-color="${shade(b1,-55)}"/>
+      <stop offset="0.16" stop-color="${shade(b1,10)}"/>
+      <stop offset="0.45" stop-color="${b2}"/>
+      <stop offset="0.78" stop-color="${shade(b1,-30)}"/>
+      <stop offset="1"    stop-color="${shade(b1,-65)}"/>
+    </linearGradient>
+    <linearGradient id="m${id}" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8e8e8e"/>
+      <stop offset="0.35" stop-color="${rimA}"/>
+      <stop offset="1" stop-color="#6f6f6f"/>
+    </linearGradient>
+    <linearGradient id="s${id}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <ellipse cx="60" cy="248" rx="35" ry="8" fill="#000000" opacity="0.45"/>
+  <ellipse cx="60" cy="243" rx="33" ry="7" fill="${shade(b1,-70)}"/>
+  <path d="M27 17 L27 236 Q27 244 35 244 L85 244 Q93 244 93 236 L93 17 Z" fill="url(#g${id})"/>
+  <ellipse cx="60" cy="17" rx="33" ry="7.5" fill="url(#m${id})"/>
+  <ellipse cx="60" cy="17.5" rx="26" ry="5.2" fill="${shade(b1,-45)}"/>
+  <ellipse cx="60" cy="16.6" rx="26" ry="5.2" fill="#9a9a9a" opacity="0.55"/>
+  <rect x="55" y="13.5" width="14" height="4" rx="2" fill="#dcdcdc"/>
+  <rect x="35" y="26" width="7" height="205" rx="4" fill="url(#s${id})" opacity="0.5"/>
+  <rect x="84" y="30" width="4" height="196" rx="2" fill="#000000" opacity="0.28"/>
+
+  <g fill="${logo}">
+    <polygon points="34,60 41,70 48,58 44,146 38,143"/>
+    <polygon points="54,50 61,62 69,49 64,154 58,154"/>
+    <polygon points="76,58 83,70 90,57 84,143 78,146"/>
+  </g>
+  <text x="60" y="176" text-anchor="middle" font-family="Arial Black, Arial, sans-serif"
+        font-size="11" letter-spacing="1.6" font-weight="900" fill="${logo}">MONSTER</text>
+  <text x="60" y="190" text-anchor="middle" font-family="Arial, sans-serif"
+        font-size="7" letter-spacing="3" fill="${logo}" opacity="0.85">ENERGY</text>
+  <text x="60" y="228" text-anchor="middle" font-family="Arial, sans-serif"
+        font-size="6.5" letter-spacing="1.2" fill="${dark ? "#ffffff" : "#101010"}" opacity="0.55">500 ml</text>
+</svg>`;
+}
+
+/* ---------------- príprava dát ---------------- */
+const items = D.map(function(d){ return { name:d[0], line:d[1], b1:d[2], b2:d[3], logo:d[4], desc:d[5] }; });
+const lines = items.map(function(i){ return i.line; }).filter(function(v,i,a){ return a.indexOf(v) === i; });
+
+document.getElementById("photoGrid").innerHTML = PHOTOS.map(function(p){
+  return '<figure>' +
+    '<img src="' + p[0] + '" alt="' + esc(p[1]) + '" loading="lazy" ' +
+    'onerror="this.style.display=\'none\'">' +
+    '<figcaption>' + esc(p[1]) + '</figcaption></figure>';
+}).join("");
+
+document.getElementById("chips").innerHTML =
+  '<span class="chip active" data-line="*">Všetky</span>' +
+  lines.map(function(l){ return '<span class="chip" data-line="' + esc(l) + '">' + esc(l) + '</span>'; }).join("");
+
+document.getElementById("statAll").textContent = items.length;
+document.getElementById("statLines").textContent = lines.length;
+document.getElementById("total").textContent = items.length;
+
+/* ---------------- filtrovanie + vykreslenie ---------------- */
+let activeLine = "*";
+let query = "";
+
+function render(){
+  const q = norm(query.trim());
+  const list = items.filter(function(i){
+    return (activeLine === "*" || i.line === activeLine) &&
+      (q === "" || norm(i.name).indexOf(q) !== -1 || norm(i.line).indexOf(q) !== -1 || norm(i.desc).indexOf(q) !== -1);
+  });
+  const grid = document.getElementById("grid");
+  if (list.length) {
+    grid.innerHTML = list.map(function(f){
+      const c = LINE_COLORS[f.line] || "#6ede2a";
+      return '<article class="card" data-i="' + items.indexOf(f) + '">' +
+        canSVG(f) +
+        '<h3>' + esc(f.name) + '</h3>' +
+        '<span class="badge" style="color:' + c + ';border-color:' + c + '55;background:' + c + '14">' + esc(f.line) + '</span>' +
+        '<p>' + esc(f.desc) + '</p></article>';
+    }).join("");
+  } else {
+    grid.innerHTML = '<div class="empty">Nič sme nenašli. Skús iný názov 🧟</div>';
+  }
+  document.getElementById("shown").textContent = list.length;
+}
+
+document.getElementById("search").addEventListener("input", function(e){ query = e.target.value; render(); });
+
+document.getElementById("chips").addEventListener("click", function(e){
+  const chip = e.target.closest(".chip");
+  if (!chip) return;
+  const all = document.querySelectorAll(".chip");
+  for (let i = 0; i < all.length; i++) all[i].classList.remove("active");
+  chip.classList.add("active");
+  activeLine = chip.getAttribute("data-line");
+  render();
+});
+
+/* ---------------- modal ---------------- */
+const modal = document.getElementById("modal");
+document.getElementById("grid").addEventListener("click", function(e){
+  const card = e.target.closest(".card");
+  if (!card) return;
+  const f = items[+card.getAttribute("data-i")];
+  const c = LINE_COLORS[f.line] || "#6ede2a";
+  document.getElementById("modalCan").innerHTML = canSVG(f);
+  const badge = document.getElementById("modalBadge");
+  badge.textContent = f.line;
+  badge.style.color = c;
+  badge.style.borderColor = c + "66";
+  badge.style.background = c + "14";
+  document.getElementById("modalName").textContent = f.name;
+  document.getElementById("modalDesc").textContent = f.desc;
+  modal.classList.add("open");
+});
+function closeModal(){ modal.classList.remove("open"); }
+document.getElementById("closeBtn").addEventListener("click", closeModal);
+modal.addEventListener("click", function(e){ if (e.target === modal) closeModal(); });
+document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeModal(); });
+
+document.getElementById("brandLogo").addEventListener("error", function(){ this.style.display = "none"; });
+
+render();
+</script>
+</body>
+</html>
