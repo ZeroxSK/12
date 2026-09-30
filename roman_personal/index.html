@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>John Doe - Totally Legit Human</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+  body { background:#0f0f14; color:#fff; line-height:1.6; overflow-x:hidden; }
+  nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; background:#15151f; position:sticky; top:0; z-index:100; border-bottom:2px solid #ff00cc; }
+  nav b { font-size:1.3rem; } nav b span { color:#ff00cc; }
+  nav div a { color:#ccc; margin-left:1.2rem; text-decoration:none; }
+  nav div a:hover { color:#ff00cc; }
+  .hero { text-align:center; padding:6rem 2rem 4rem; background: radial-gradient(circle at 50% 20%, #2a0a3a, #0f0f14 70%); }
+  .avatar { width:140px; height:140px; border-radius:50%; background:linear-gradient(135deg,#ff00cc,#3333ff); display:flex; align-items:center; justify-content:center; font-size:4rem; margin:0 auto 1rem; border:4px solid #fff; }
+  .badge { display:inline-block; background:#00ff88; color:#000; padding:0.3rem 0.8rem; border-radius:20px; font-size:0.8rem; font-weight:bold; margin-bottom:1rem; transform:rotate(-3deg); }
+  h1 { font-size:3rem; } h1 span { color:#ff00cc; }
+  #typing { color:#00ffcc; min-height:1.8rem; font-size:1.2rem; margin:0.5rem 0 1.5rem; }
+  .btns a, .btns button { display:inline-block; padding:0.8rem 1.5rem; margin:0.3rem; border-radius:10px; border:none; cursor:pointer; text-decoration:none; font-weight:bold; }
+  .primary { background:#ff00cc; color:white; }
+  .secondary { background:white; color:black; }
+  section { max-width:900px; margin:0 auto; padding:3rem 2rem; }
+  h2 { font-size:2rem; margin-bottom:1rem; border-left:6px solid #ff00cc; padding-left:0.8rem; }
+  .card { background:#1a1a28; border-radius:15px; padding:1.5rem; margin:1rem 0; border:1px solid #333; }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; }
+  .stat { background:#1f1f30; text-align:center; padding:1.5rem 1rem; border-radius:15px; }
+  .stat h3 { font-size:2.2rem; color:#00ffcc; }
+  .skill-bar { background:#333; border-radius:10px; overflow:hidden; margin:0.4rem 0 1rem; }
+  .skill-fill { padding:0.4rem 0.8rem; font-size:0.85rem; font-weight:bold; color:#000; }
+  footer { text-align:center; padding:2rem; background:#15151f; color:#777; }
+  input, textarea { width:100%; padding:0.8rem; margin:0.5rem 0; border-radius:8px; border:none; }
+  .testimonial { border-left:4px solid #00ff88; padding-left:1rem; margin:1rem 0; font-style:italic; }
+  .marquee { background:#ff00cc; color:#fff; padding:0.5rem; white-space:nowrap; overflow:hidden; font-weight:bold; }
+</style>
+</head>
+<body>
+<div class="marquee">⚠️ WARNING: Hiring this person may cause excessive laughter • 100% certified human (probably) • Will work for snacks • ⚠️</div>
+<nav><b>john<span>.doe</span> 🤡</b><div><a href="#about">About</a><a href="#stats">Stats</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div></nav>
+
+<div class="hero">
+  <div class="avatar">🤪</div>
+  <div class="badge">✅ VERIFIED LEGEND (by my mom)</div>
+  <h1>Hi, I'm <span>John Doe</span></h1>
+  <div id="typing"></div>
+  <p>Professional overthinker • Amateur adult • Full-time meme enjoyer</p><br>
+  <div class="btns">
+    <a class="primary" href="#contact">Hire Me (Please)</a>
+    <a class="secondary" href="#" onclick="alert('Just kidding, there is no CV. I live in the moment.');return false;">Download CV 📄</a>
+  </div>
+  <p style="margin-top:1rem;font-size:0.9rem;color:#aaa" id="visitor-count">Visitor #000001 - congrats, you're my first friend!</p>
+</div>
+
+<section id="about">
+  <h2>About Me 🙋</h2>
+  <div class="card">
+    <p>Age: <b>25* (*in dog years I'm 175, very wise)</b></p>
+    <p>Location: <b>Couch, probably</b></p>
+    <p>Occupation: <b>Turning coffee into bugs since 2019</b></p><br>
+    <p>I am a highly motivated individual with 10+ years of experience in breathing oxygen. I once fixed a bug by restarting my computer. My code doesn't always work, but when it does, I have no idea why.</p>
+    <p><br>Fun facts:</p>
+    <ul style="margin-left:1.5rem">
+      <li>💤 Can nap anywhere, anytime, in any meeting</li>
+      <li>🍕 Pizza is a food group, fight me</li>
+      <li>💻 Knows 12 programming languages (Hello World in all of them)</li>
+      <li>🏆 Won an argument with WiFi router once (unplugged it)</li>
+    </ul>
+  </div>
+</section>
+
+<section id="stats">
+  <h2>Totally Real Stats 📊</h2>
+  <div class="stats">
+    <div class="stat"><h3 data-count="47">0</h3><p>Coffees / day</p></div>
+    <div class="stat"><h3 data-count="3">0</h3><p>Hours slept</p></div>
+    <div class="stat"><h3 data-count="999">0</h3><p>Bugs created</p></div>
+    <div class="stat"><h3 data-count="1">0</h3><p>Bug fixed (lucky)</p></div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>My Super Skills 💪</h2>
+  <div class="card">
+    <p>Procrastination</p><div class="skill-bar"><div class="skill-fill" style="width:99%;background:#ff00cc">99% - Olympic level</div></div>
+    <p>Googling "how to center a div"</p><div class="skill-bar"><div class="skill-fill" style="width:100%;background:#00ffcc">100%</div></div>
+    <p>Saying "it works on my machine"</p><div class="skill-bar"><div class="skill-fill" style="width:95%;background:#ffcc00">95%</div></div>
+    <p>Actually writing documentation</p><div class="skill-bar"><div class="skill-fill" style="width:2%;background:#ff5555">2%</div></div>
+    <p>Pretending to pay attention on Zoom (camera off)</p><div class="skill-bar"><div class="skill-fill" style="width:87%;background:#8855ff">87%</div></div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Legendary Projects 🚀</h2>
+  <div class="card"><h3>1. To-Do App (Unfinished)</h3><p>Started a to-do app to stop procrastinating. Got distracted. It's still on the to-do list. Status: ironic.</p></div>
+  <div class="card"><h3>2. Diet Plan v47.0</h3><p>Revolutionary diet where you eat whatever you want and feel guilty after. Lost 0kg, gained happiness.</p></div>
+  <div class="card"><h3>3. Alarm Clock Disabler</h3><p>An app that snoozes your alarm automatically. 5-star reviews from my bed. Investors hate it.</p></div>
+  <div class="card">
+    <h3>Testimonials:</h3>
+    <div class="testimonial">"He's my son, I'm legally required to say he's amazing." - Mom, 5/5 ⭐</div>
+    <div class="testimonial">"Who is this? Please stop emailing us." - Google Recruiter, 1/5</div>
+    <div class="testimonial">"He owes me $20." - Best friend, 4/5</div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Me 📬 (Don't)</h2>
+  <div class="card">
+    <p>Email: totally.real.email.definitely@notfake.com</p>
+    <p>Phone: 555-0100-CALL-MOMMY</p>
+    <p>Discord: sleepy_dev#0000 (status: offline since 2021)</p><br>
+    <input id="name" placeholder="Your name" />
+    <textarea id="msg" placeholder="Say something nice (compliments only)"></textarea>
+    <div class="btns"><button class="primary" onclick="sendMsg()">Send Message 🚀</button></div>
+  </div>
+</section>
+
+<footer>Made with ❤️ and 0% effort • © 2026 John Doe • No rights reserved, please steal this site</footer>
+
+<script>
+  const roles = ["Professional Napper 💤","Bug Creator 🐛","Certified Snack Eater 🍕","CEO of Procrastination 🏢","StackOverflow Copier 📋"];
+  let ri=0, ci=0, del=false;
+  const el = document.getElementById('typing');
+  (function type(){
+    const cur = roles[ri];
+    el.textContent = "> " + cur.slice(0,ci);
+    if(!del){ ci++; if(ci>cur.length){ del=true; setTimeout(type,1200); return; } }
+    else{ ci--; if(ci===0){ del=false; ri=(ri+1)%roles.length; } }
+    setTimeout(type, del?30:70);
+  })();
+  // counters
+  const counters = document.querySelectorAll('[data-count]');
+  const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ let t=+e.target.dataset.count, c=0; const iv=setInterval(()=>{c+=Math.ceil(t/30); if(c>=t){c=t;clearInterval(iv);} e.target.textContent=c;},50); io.unobserve(e.target);} }));
+  counters.forEach(c=>io.observe(c));
+  // visitor
+  let v = Math.floor(Math.random()*9000)+2;
+  document.getElementById('visitor-count').textContent = `Visitor #${String(v).padStart(6,'0')} - wow, I'm famous!`;
+  function sendMsg(){
+    const n = document.getElementById('name').value || 'mysterious stranger';
+    const excuses = ["Message sent to spam (just kidding... maybe).", "Error 404: Motivation not found to reply.", "Thanks "+n+"! I'll reply in 3-5 business years."];
+    alert(excuses[Math.floor(Math.random()*excuses.length)]);
+  }
+  console.log("Psst... you found the console. You're hired as my IT support now.");
+</script>
+</body>
+</html>
