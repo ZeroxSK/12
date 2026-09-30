@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BuildBox — Best YouTube Projects</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">▣</div>
+    <div>
+      <h1>BuildBox</h1>
+      <p>Best project builds from YouTube</p>
+    </div>
+  </div>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search projects: arduino robot, portfolio site, AI bot…" autocomplete="off" />
+    <button id="searchBtn" title="Search">⌕</button>
+  </div>
+  <div class="top-actions">
+    <button id="favToggle" class="ghost">★ Saved <span id="favCount">0</span></button>
+    <button id="addBtn" class="primary">+ Add</button>
+    <button id="settingsBtn" class="ghost">⚙ API</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <h2>Stop scrolling. Start building.</h2>
+    <p>Curated coding + DIY maker projects with full YouTube tutorials. Filter by stack, save favorites, add your own, or go live with the YouTube API.</p>
+    <div class="hero-stats">
+      <span><b id="statTotal">0</b> projects</span>
+      <span><b id="statLive">0</b> live</span>
+      <span><b>100%</b> free tutorials</span>
+    </div>
+  </div>
+  <div class="hero-card">
+    <h3>🔴 Go live</h3>
+    <p>Paste a YouTube Data API key to search all of YouTube from here.</p>
+    <button id="heroApiBtn" class="primary">Connect API key</button>
+    <a href="README.md" target="_blank">how to get a key?</a>
+  </div>
+</section>
+
+<nav class="filters">
+  <div id="cats" class="pills"></div>
+  <div class="right">
+    <select id="difficulty">
+      <option value="all">All levels</option>
+      <option value="Beginner">Beginner</option>
+      <option value="Intermediate">Intermediate</option>
+      <option value="Advanced">Advanced</option>
+    </select>
+    <select id="sort">
+      <option value="featured">Featured</option>
+      <option value="easiest">Easiest first</option>
+      <option value="longest">Longest first</option>
+      <option value="az">A–Z</option>
+    </select>
+    <label class="check"><input type="checkbox" id="favOnly" /> Saved only</label>
+  </div>
+</nav>
+
+<p id="liveNote" class="live-note" hidden></p>
+
+<main id="grid" class="grid"></main>
+
+<footer>
+  <p>Built for builders. Curated IDs can be replaced in <code>app.js</code>. Add your own via + Add. Data saves in your browser.</p>
+</footer>
+
+<!-- Video modal -->
+<div id="modal" class="modal" hidden>
+  <div class="modal-box">
+    <button id="modalClose" class="x">✕</button>
+    <div class="video"><iframe id="player" src="" title="YouTube player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <h3 id="mTitle"></h3>
+    <p id="mMeta"></p>
+    <p id="mDesc"></p>
+    <div class="m-actions">
+      <a id="mLink" href="#" target="_blank" class="primary">Open on YouTube</a>
+      <button id="mSave" class="ghost">★ Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Settings modal -->
+<div id="settings" class="modal" hidden>
+  <div class="modal-box small">
+    <button id="settingsClose" class="x">✕</button>
+    <h3>YouTube API (optional)</h3>
+    <p>Paste a YouTube Data API v3 key to enable live search. Stored only in your browser.</p>
+    <input id="apiKey" type="password" placeholder="AIza…" />
+    <div class="m-actions">
+      <button id="saveKey" class="primary">Save key</button>
+      <button id="clearKey" class="ghost">Clear</button>
+    </div>
+    <p class="hint">No key? The site still works with the curated list below. See README.md for key setup.</p>
+  </div>
+</div>
+
+<!-- Add modal -->
+<div id="addModal" class="modal" hidden>
+  <div class="modal-box small">
+    <button id="addClose" class="x">✕</button>
+    <h3>Add your project</h3>
+    <input id="fTitle" placeholder="Title — e.g. DIY Spotify player with ESP32" />
+    <input id="fUrl" placeholder="YouTube URL — https://youtube.com/watch?v=…" />
+    <div class="row">
+      <select id="fCat">
+        <option>Coding</option><option>Arduino</option><option>Raspberry Pi</option>
+        <option>3D Printing</option><option>AI</option><option>DIY</option>
+      </select>
+      <select id="fLevel">
+        <option>Beginner</option><option>Intermediate</option><option>Advanced</option>
+      </select>
+    </div>
+    <input id="fTime" placeholder="Time — e.g. 2h" />
+    <textarea id="fDesc" placeholder="What will I build?"></textarea>
+    <div class="m-actions">
+      <button id="fSave" class="primary">Add project</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>

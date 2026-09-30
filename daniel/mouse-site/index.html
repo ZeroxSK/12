@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AIMLAB Mice — Pro CS2 & Valorant Picks</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top"><span class="mark"></span> AIMLAB<span class="thin">MICE</span></a>
+    <div class="links">
+      <a href="#mice">Mice</a><a href="#compare">Compare</a><a href="#finder">Finder</a><a href="#pros">Pros</a><a href="#faq">FAQ</a>
+    </div>
+    <a class="btn small" href="#mice">Shop pro picks</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="kicker"><span class="dot"></span> CS2 MAJORS • VCT • FACEIT APPROVED</div>
+      <h1>Aim like<br/>the <em>pros.</em></h1>
+      <p>The lightweight esports mice CS2 and Valorant pros actually compete with. Verified shapes, sensors and weights — no gimmicks.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#mice">Browse 8 pro mice</a>
+        <a class="btn ghost" href="#finder">Find my mouse →</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>49–60g</b><span>pro weight range</span></div>
+        <div><b>8K</b><span>Hz wireless polling</span></div>
+        <div><b>400 eDPI</b><span>avg pro setup</span></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="tag">🔥 #1 IN PRO PLAY</div>
+      <div class="mouse-art superlight"><div class="wheel"></div></div>
+      <h3>Logitech G Pro X Superlight 2</h3>
+      <p class="muted">60g • HERO2 32K • seen with m0NESY, ZywOo</p>
+      <div class="row"><span class="price">$159</span><button class="btn small" data-buy="Logitech G Pro X Superlight 2">Buy now</button></div>
+    </div>
+  </div>
+  <div class="marquee"><div class="track" id="brandTrack"></div></div>
+</header>
+
+<section class="toolbar" id="mice">
+  <h2>Pro picks <span id="count"></span></h2>
+  <div class="filters">
+    <div class="pills" id="gamePills">
+      <button class="pill active" data-game="All">All</button>
+      <button class="pill" data-game="CS2">CS2</button>
+      <button class="pill" data-game="Valorant">Valorant</button>
+      <button class="pill" data-game="Both">Both scenes</button>
+    </div>
+    <select id="shape"><option value="All">Any shape</option><option>Symmetrical</option><option>Ergonomic</option><option>Ergo-right</option></select>
+    <select id="sort"><option value="pro">Most used by pros</option><option value="light">Lightest first</option><option value="cheap">Price: low → high</option></select>
+  </div>
+</section>
+
+<main class="grid" id="grid"></main>
+
+<section class="compare" id="compare">
+  <h2>Side-by-side specs</h2>
+  <div class="table-wrap"><table id="table"><thead><tr><th>Mouse</th><th>Weight</th><th>Sensor</th><th>Polling</th><th>Shape</th><th>Best for</th><th>Price</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<section class="finder" id="finder">
+  <div class="finder-box">
+    <div>
+      <h2>60-second mouse finder</h2>
+      <p class="muted">Answer 3 questions, get the mouse pros with your grip would pick.</p>
+      <div class="q"><label>1. Main game</label><div class="pills" id="fGame"><button class="pill active" data-v="CS2">CS2</button><button class="pill" data-v="Valorant">Valorant</button></div></div>
+      <div class="q"><label>2. Grip</label><div class="pills" id="fGrip"><button class="pill active" data-v="Claw">Claw</button><button class="pill" data-v="Palm">Palm</button><button class="pill" data-v="Fingertip">Fingertip</button></div></div>
+      <div class="q"><label>3. Hand size</label><div class="pills" id="fHand"><button class="pill active" data-v="M">Medium</button><button class="pill" data-v="S">Small</button><button class="pill" data-v="L">Large</button></div></div>
+      <button class="btn" id="findBtn">Recommend me →</button>
+    </div>
+    <div class="result" id="findResult"><p class="muted">Your match will appear here.</p></div>
+  </div>
+</section>
+
+<section class="pros" id="pros">
+  <h2>Trusted on stage</h2>
+  <p class="muted center">Shapes you'll see at Majors and VCT. Lineups change — always check prosettings.net before you copy a setup.</p>
+  <div class="pro-cards" id="proCards"></div>
+  <div class="edpi">
+    <div><h3>What eDPI do pros use?</h3><p>CS2 pros cluster around <b>700–900 eDPI</b> (e.g. 400 DPI × 2.0 sens). Valorant pros sit around <b>200–350 eDPI</b> (e.g. 800 DPI × 0.35). Start there, adjust ±20% to taste.</p></div>
+    <div class="edpi-box">eDPI = DPI × in-game sens<br/><span>400 × 2.0 = 800 eDPI (CS2)</span><br/><span>800 × 0.35 = 280 eDPI (VAL)</span></div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <h2>FAQ</h2>
+  <details open><summary>Wired or wireless for comp?</summary><p>Wireless. Modern 2.4GHz + 4K/8K polling matches wired latency. Every mouse here is stage-proven wireless.</p></details>
+  <details><summary>Ultralight vs 60g+?</summary><p>Fingertip aimers go 49–55g (Pulsar, Viper V3 Pro). Palm/claw hybrid players often prefer 60–65g stability (Superlight 2, EC-CW).</p></details>
+  <details><summary>What shape for claw grip?</summary><p>Smaller symmetrical mice: G Pro X Superlight 2, Viper V3 Pro, Pulsar X2V2. Palm grip: DeathAdder V3 Pro, EC2-CW, G703-class ergos.</p></details>
+</section>
+
+<section class="cta">
+  <h2>Get the pro-settings sheet</h2>
+  <p>DPI, sens, eDPI and mousepads of 40 current CS2 + VCT pros. Free PDF.</p>
+  <form id="mail"><input type="email" required placeholder="you@faceit.gg" /><button class="btn">Send it →</button></form>
+</section>
+
+<footer>Demo storefront. Prices indicative. Pro associations reflect widely reported stage setups and change over time.</footer>
+<div class="toast" id="toast" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>

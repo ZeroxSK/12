@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3a3f5c"/><stop offset=".55" stop-color="#141828"/><stop offset="1" stop-color="#070910"/>
+    </linearGradient>
+    <radialGradient id="floor" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ff2bd6" stop-opacity=".55"/><stop offset="1" stop-color="#ff2bd6" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <ellipse cx="200" cy="252" rx="120" ry="26" fill="url(#floor)"/>
+  <g stroke="#ff2bd6" stroke-opacity=".25" stroke-width="1">
+    <line x1="40" y1="252" x2="360" y2="252"/><line x1="70" y1="266" x2="330" y2="266"/><line x1="110" y1="278" x2="290" y2="278"/>
+  </g>
+  <path d="M200,42 C252,42 287,94 287,156 C287,218 246,262 200,262 C154,262 113,218 113,156 C113,94 148,42 200,42 Z"
+    fill="url(#body)" stroke="#ff2bd6" stroke-width="3" filter="url(#glow)"/>
+  <line x1="200" y1="42" x2="200" y2="104" stroke="#ff2bd6" stroke-width="2" opacity=".8"/>
+  <rect x="190" y="62" width="20" height="40" rx="10" fill="#05070c" stroke="#ff2bd6" stroke-width="2" filter="url(#glow)"/>
+  <line x1="200" y1="68" x2="200" y2="94" stroke="#ff2bd6" stroke-width="2"/>
+  <path d="M128,150 l-14,4 M128,168 l-14,4" stroke="#ff2bd6" stroke-width="3" stroke-linecap="round" filter="url(#glow)"/>
+  <circle cx="200" cy="190" r="14" fill="none" stroke="#ff2bd6" stroke-width="2" opacity=".9" filter="url(#glow)"/>
+  <circle cx="200" cy="190" r="4" fill="#ff2bd6"/>
+  <path d="M150,90 C165,70 185,60 200,60" stroke="#ffffff" stroke-width="3" opacity=".25" stroke-linecap="round" fill="none"/>
+</svg>
